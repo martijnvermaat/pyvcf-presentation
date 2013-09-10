@@ -43,6 +43,34 @@
 					}
 		</style>
 	</div></section>
+    <section class="slide"><div>
+        <h2>NGS workflow</h2>
+        <ol>
+          <li>Sequence a population / patients / controls / ...</li>
+          <li><b>(Some bioinformatics...)</b></li>
+          <li>Answers</li>
+        </ol>
+    </div></section>
+    <section class="slide"><div>
+        <h2>Bioinformatics NGS workflow</h2>
+        <ol>
+          <li>Assemble or align</li>
+          <li>Call variants</li>
+          <li>Annotate variants</li>
+          <li>Filter variants</li>
+        </ol>
+        <p class="note">It's all about the variants</p>
+    </div></section>
+    <section class="slide"><div>
+        <h2>Variant calls</h2>
+        <p>Commonly stored in VCF files</p>
+        <ol>
+          <li>Read VCF</li>
+          <li>Manipulate VCF</li>
+          <li>Application support for VCF</li>
+          <li>Custom scripts for VCF</li>
+        </ol>
+    </div></section>
 	<section class="slide"><div>
 		<h2>Variant Call Format (VCF)</h2>
         <img src="pictures/vcf.png" alt="" width="500px">
@@ -98,7 +126,215 @@
 <code>        print 'Patient B is %s for %s' % (pat_b, var)</code>
         </pre>
         <p>Problem solved!</p>
-    </section>
+    </div></section>
+	<section class="slide cover" id="screenshot"><div>
+        <h2>Except that VCF is not <i>that</i> simple</h2>
+		<img src="pictures/screenshot.png" alt="">
+		<style>
+			#screenshot h2 {
+            text-align: center;
+            margin-top: 200px;
+				color:#FFF;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+				}
+		</style>
+	</div></section>
+	<section class="slide"><div>
+		<h2>VCF complications</h2>
+        <ul>
+          <li>Header lines</li>
+          <li>Fields have internal structure
+            <ul>
+              <li>defined in the header</li>
+              <li>defined in other fields</li>
+            </ul></li>
+          <li>Genotypes refer to earlier fields</li>
+          <li>Structural variants</li>
+        </ul>
+    </div></section>
+	<section class="slide"><div>
+		<h2>PyVCF</h2>
+        <p>A flexible Python library for working with the Variant Call
+		Format (VCF)</p>
+        <ul>
+          <li>James Casbon
+          <li>Martijn Vermaat
+          <li>Aaron Quinlan
+          <li>and others
+        </ul>
+    </div></section>
+	<section class="slide"><div>
+		<h2>Example</h2>
+        <pre>
+<code>&gt;&gt;&gt; import vcf</code>
+<code>&gt;&gt;&gt; reader = vcf.Reader(open('variants.vcf')</code>
+<code>&gt;&gt;&gt; for record in reader:</code>
+<code>...     print record</code>
+<code>Record(CHROM=20, POS=14370, REF=G, ALT=[A])</code>
+<code>Record(CHROM=20, POS=17330, REF=T, ALT=[A])</code>
+<code>Record(CHROM=20, POS=1110696, REF=A, ALT=[G, T])</code>
+<code>Record(CHROM=20, POS=1230237, REF=T, ALT=[None])</code>
+<code>Record(CHROM=20, POS=1234567, REF=GTCT, ALT=[G, GTACT])</code>
+        </pre>
+    </div></section>
+	<section class="slide cover" id="features"><div>
+        <h2>Basic features</h2>
+		<img src="pictures/features.jpg" alt="">
+		<style>
+			#features h2 {
+            margin-top: 380px;
+				color: #fff;
+				}
+		</style>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Conversion to Python datatypes</h2>
+        <ul>
+          <li>Integers and floats</li>
+          <li>Lists (also singletons) and dictionaries</li>
+        </ul>
+        <pre>
+<code>&gt;&gt;&gt; print record.POS</code>
+<code>14370</code>
+<code>&gt;&gt;&gt; print record.ALT</code>
+<code>[A]</code>
+<code>&gt;&gt;&gt; print record.INFO['AF']</code>
+<code>[0.5]</code>
+        </pre>
+    </div></section>
+	<section class="slide"><div>
+		<h2>Convenience properties</h2>
+        <pre>
+<code>&gt;&gt;&gt; print record.num_called, record.call_rate, record.num_unknown</code>
+<code>3 1.0 0</code>
+<code>&gt;&gt;&gt; print record.num_hom_ref, record.num_het, record.num_hom_alt</code>
+<code>1 1 1</code>
+<code>&gt;&gt;&gt; print record.nucl_diversity, record.aaf</code>
+<code>0.6 0.5</code>
+<code>&gt;&gt;&gt; print record.get_hets()</code>
+<code>[Call(sample=NA00002, CallData(GT=1|0, GQ=48, DP=8, HQ=[51, 51]))]</code>
+<code>&gt;&gt;&gt; print record.is_snp, record.is_indel, record.is_transition</code>
+<code>True False True</code>
+<code>&gt;&gt;&gt; print record.var_type, record.var_subtype</code>
+<code>snp ts</code>
+        </pre>
+    </div></section>
+	<section class="slide"><div>
+		<h2>Access to sample call data</h2>
+        <pre>
+<code>&gt;&gt;&gt; for sample in record.samples:</code>
+<code>...     print sample['GT'], sample.gt_bases</code>
+<code>0|0 T|T</code>
+<code>0|1 A|C</code>
+<code>0/0 A/A</code>
+<code>&gt;&gt;&gt; call = record.genotype('NA00001')</code>
+<code>&gt;&gt;&gt; print call</code>
+<code>Call(sample=NA00001, CallData(GT=0|0, GQ=49, DP=3, HQ=[58, 50]))]</code>
+<code>&gt;&gt;&gt; print call.called, call.gt_type, call.gt_bases, call.phased</code>
+<code>True 0 T|T True</code>
+        </pre>
+    </div></section>
+	<section class="slide"><div>
+		<h2>Access to metadata</h2>
+        <pre>
+<code>&gt;&gt;&gt; reader.metadata['fileDate']</code>
+<code>'20090805'</code>
+<code>&gt;&gt;&gt; reader.samples</code>
+<code>['NA00001', 'NA00002', 'NA00003']</code>
+<code>&gt;&gt;&gt; reader.filters</code>
+<code>OrderedDict([('q10', Filter(id='q10', desc='Quality below 10')),
+  ('s50', Filter(id='s50', desc='Less than 50% of samples have data'))])</code>
+<code>&gt;&gt;&gt; reader.infos['AA'].desc</code>
+<code>'Ancestral Allele'</code>
+        </pre>
+    </div></section>
+	<section class="slide"><div>
+		<h2>Fast random access</h2>
+        <p>For files indexed with tabix</p>
+        <pre>
+<code>&gt;&gt;&gt; reader = vcf.Reader(filename='variants.vcf.gz')</code>
+<code>&gt;&gt;&gt; for record in reader.fetch('20', 1110696, 1230237):</code>
+<code>...     print record</code>
+<code>Record(CHROM=20, POS=1110696, REF=A, ALT=[G, T])</code>
+<code>Record(CHROM=20, POS=1230237, REF=T, ALT=[None])</code>
+        </pre>
+    </div></section>
+	<section class="slide"><div>
+		<h2>Writing to a file</h2>
+        <p>Limited support for writing</p>
+        <pre>
+<code>&gt;&gt;&gt; reader = vcf.Reader(open('variants.vcf'))</code>
+<code>&gt;&gt;&gt; writer = vcf.Writer(open('/dev/null', 'w'), reader)</code>
+<code>&gt;&gt;&gt; for record in reader:</code>
+<code>...     writer.write_record(record)</code>
+        </pre>
+        <p class="note">For now, the writer requires a template reader for the metadata</p>
+    </div></section>
+	<section class="slide"><div>
+		<h2>Filtering VCF files</h2>
+        <p>Very common operation: <code>vcf_filter.py</code></p>
+        <pre>
+<code>vcf_filter.py variants.vcf \</code>
+<code>    sq --site-quality 20 \</code>
+<code>    dps --depth-per-sample 10 \</code>
+<code>    snp-only \</code>
+<code>      > filtered.vcf</code>
+        </pre>
+    </div></section>
+	<section class="slide"><div>
+		<h2>Custom filters</h2>
+        <pre>
+<code>class SiteQuality(vcf.filters.Base):</code>
+<code>    'Filter sites by quality'</code>
+<code>    name = 'sq'</code>
+<code style="margin-top: 10px;">    @classmethod</code>
+<code>    def customize_parser(self, parser):</code>
+<code>        parser.add_argument('--site-quality', type=int, default=30)</code>
+<code style="margin-top: 10px;">    def __init__(self, args):</code>
+<code>        self.threshold = args.site_quality</code>
+<code style="margin-top: 10px;">    def __call__(self, record):</code>
+<code>        if record.QUAL < self.threshold: return 1</code>
+        </pre>
+    </div></section>
+	<section class="slide cover" id="fast"><div>
+        <h2>But is it fast?</h2>
+		<img src="pictures/fast.jpg" alt="">
+		<style>
+			#fast h2 {
+            margin-left: 100px;
+				color: #fff;
+				}
+		</style>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Performance</h2>
+        <p>1000+ sample VCF files are not uncommon</p>
+        <ul>
+          <li>Main parsing loop is implemented in Cython</li>
+          <li>Similar to C/C++ libraries PLINKSEQ and VCFLIB</li>
+          <li>Working on lazy stats calculation</li>
+        </ul>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Lazy stats calculation</h2>
+        <img src="pictures/performance.png" alt="" width="500px">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Future</h2>
+        <ul>
+          <li>NumPy arrays for some data</li>
+          <li>gVCF</li>
+          <li>BioPython</li>
+        </ul>
+	</div></section>
+
+
+
+
 	<section class="slide"><div>
 		<h2>Plain Text on Your Slides</h2>
 		<p>Lorem ipsum dolor sit amet, consectetur <a href="#4">adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <em>quis nostrud</em> exercitation ullamco laboris <strong>nisi ut aliquip</strong> ex ea commodo consequat. Duis aute irure <i>dolor</i> in reprehenderit in voluptate velit esse cillum <b>dolore</b> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in <code>&lt;culpa&gt;</code> qui officia deserunt mollit anim id est laborum.</p>
