@@ -1,0 +1,16 @@
+#library	cython	callstats	time
+pyvcf	no	no	real 161.84 user 161.43 sys 0.25
+pyvcf	yes	no	real 136.70 user 136.35 sys 0.22
+pyvcf_lazy	no	no	real 165.07 user 164.43 sys 0.44
+pyvcf_lazy	yes	no	real 140.08 user 139.57 sys 0.36
+cyvcf	yes	no	real 251.10 user 250.38 sys 0.48
+pyvcf	no	some	real 298.38 user 297.68 sys 0.45
+pyvcf	yes	some	real 270.32 user 269.72 sys 0.34
+pyvcf_lazy	no	some	real 221.27 user 220.82 sys 0.24
+pyvcf_lazy	yes	some	real 192.47 user 191.91 sys 0.36
+cyvcf	yes	some	real 250.08 user 249.57 sys 0.27
+pyvcf	no	all	real 352.17 user 351.51 sys 0.40
+pyvcf	yes	all	real 321.58 user 320.57 sys 0.66
+pyvcf_lazy	no	all	real 219.99 user 219.62 sys 0.15
+pyvcf_lazy	yes	all	real 190.60 user 190.34 sys 0.11
+cyvcf	yes	all	real 251.68 user 251.25 sys 0.21

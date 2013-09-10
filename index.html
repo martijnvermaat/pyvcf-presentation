@@ -54,10 +54,12 @@
     <section class="slide"><div>
         <h2>Bioinformatics NGS workflow</h2>
         <ol>
-          <li>Assemble or align</li>
+          <li>Assemble or align reads</li>
           <li>Call variants</li>
           <li>Annotate variants</li>
           <li>Filter variants</li>
+          <li>Report variants</li>
+          <li>...</li>
         </ol>
         <p class="note">It's all about the variants</p>
     </div></section>
@@ -149,17 +151,19 @@
           <li>Header lines</li>
           <li>Fields have internal structure
             <ul>
+              <li>defined in the VCF specification (3.0/4.0/4.1/...)</li>
               <li>defined in the header</li>
               <li>defined in other fields</li>
             </ul></li>
           <li>Genotypes refer to earlier fields</li>
+          <li>Optional and custom fields</li>
           <li>Structural variants</li>
         </ul>
     </div></section>
 	<section class="slide"><div>
-		<h2>PyVCF</h2>
-        <p>A flexible Python library for working with the Variant Call
-		Format (VCF)</p>
+		<h2>PyVCF: a flexible Python library for working with the Variant Call
+		Format (VCF)</h2>
+        <p><a href="https://github.com/jamescasbon/PyVCF">https://github.com/jamescasbon/PyVCF</a></p>
         <ul>
           <li>James Casbon
           <li>Martijn Vermaat
@@ -321,117 +325,46 @@
 	</div></section>
 	<section class="slide"><div>
 		<h2>Lazy stats calculation</h2>
-        <img src="pictures/performance.png" alt="" width="500px">
+        <img src="pictures/performance.png" alt="" width="800px">
+	</div></section>
+	<section class="slide cover" id="opensource"><div>
+        <h2>Open Source</h2>
+		<img src="pictures/opensource.jpg" alt="">
+		<style>
+			#opensource h2 {
+            margin-top: -40px;
+            text-align:center;
+				color: #fff;
+				}
+		</style>
+	</div></section>
+	<section class="slide"><div>
+		<h2><a href="https://github.com/jamescasbon/PyVCF">https://github.com/jamescasbon/PyVCF</a></h2>
+        <ul>
+          <li>Current version 0.6.4</li>
+          <li>20 contributors</li>
+          <li>334 commits</li>
+          <li>117 issues (18 open)</li>
+        </ul>
+        <img src="pictures/activity.png" alt="" width="800px">
+    </div></section>
+	<section class="slide"><div>
+		<h2>Users</h2>
+        <ul>
+          <li>bcbio-nextgen (Brad Chapman)</li>
+          <li>GEMINI (Aaron Quinlan)</li>
+          <li>DVD variant database</li>
+          <li>Many of our scripts, e.g. GoNL mtDNA analysis</li>
+          <li>(Search GitHub for <code>import vcf</code>)</li>
+        </ul>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Future</h2>
         <ul>
           <li>NumPy arrays for some data</li>
-          <li>gVCF</li>
-          <li>BioPython</li>
+          <li>Support for genome VCF (gVCF)</li>
+          <li>Inclusion in BioPython</li>
         </ul>
-	</div></section>
-
-
-
-
-	<section class="slide"><div>
-		<h2>Plain Text on Your Slides</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur <a href="#4">adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <em>quis nostrud</em> exercitation ullamco laboris <strong>nisi ut aliquip</strong> ex ea commodo consequat. Duis aute irure <i>dolor</i> in reprehenderit in voluptate velit esse cillum <b>dolore</b> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in <code>&lt;culpa&gt;</code> qui officia deserunt mollit anim id est laborum.</p>
-	</div></section>
-	<section class="slide"><div>
-		<h2>All Kind of Lists</h2>
-		<ol>
-			<li>Simple lists are marked with bullets</li>
-			<li>Ordered lists begin with a number</li>
-			<li>You can even nest lists one inside another
-				<ul>
-					<li>Or mix their types</li>
-					<li>But do not go too far</li>
-					<li>Otherwise audience will be bored</li>
-				</ul>
-			</li>
-			<li>Look, seven rows exactly!</li>
-		</ol>
-	</div></section>
-	<section class="slide"><div>
-		<h2>Serious Citations</h2>
-		<figure>
-			<blockquote>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-			</blockquote>
-			<figcaption>Marcus Tullius Cicero</figcaption>
-		</figure>
-	</div></section>
-	<section class="slide"><div>
-		<h2>Code Samples</h2>
-		<pre>
-			<code>&lt;!DOCTYPE html&gt;</code>
-			<code>&lt;html lang="en"&gt;</code>
-			<code><mark>&lt;head&gt;</mark> <mark class="comment">&lt;!--Comment--&gt;</mark></code>
-			<code>    &lt;title&gt;Shower&lt;/title&gt;</code>
-			<code>    &lt;meta charset="<mark class="important">UTF-8</mark>"&gt;</code>
-			<code>    &lt;link rel="stylesheet" href="screen.css"&gt;</code>
-			<code><mark>&lt;/head&gt;</mark></code>
-		</pre>
-	</div></section>
-	<section class="slide"><div>
-		<h2>Even Tables</h2>
-		<table>
-		<tr>
-			<th scope="col">Locavore</th>
-			<th>Umami</th>
-			<th>Helvetica</th>
-			<th>Vegan</th>
-		</tr>
-		<tr>
-			<th scope="row">Fingerstache</th>
-			<td>Kale</td>
-			<td>Chips</td>
-			<td>Keytar</td>
-		</tr>
-		<tr>
-			<th scope="row">Sriracha</th>
-			<td>Gluten-free</td>
-			<td>Ennui</td>
-			<td>Keffiyeh</td>
-		</tr>
-		<tr>
-			<th scope="row">Thundercats</th>
-			<td>Jean</td>
-			<td>Shorts</td>
-			<td>Biodiesel</td>
-		</tr>
-		<tr>
-			<th scope="row">Terry</th>
-			<td>Richardson</td>
-			<td>Swag</td>
-			<td>Blog</td>
-		</tr>
-		</table>
-		<p>It’s good to have information organized.</p>
-	</div></section>
-	<section class="slide cover" id="Picture"><div>
-		<h2>Pictures</h2>
-		<img src="pictures/picture.jpg" alt="">
-		<style>
-			#Picture h2 {
-				color:#FFF;
-				}
-		</style>
-	</div></section>
-	<section class="slide shout"><div>
-		<h2>You can even shout this way</h2>
-	</div></section>
-	<section class="slide"><div>
-		<h2>Inner Navigation</h2>
-		<ol>
-			<li>Lets you reveal list items one by one</li>
-			<li class="next">To keep some key points</li>
-			<li class="next">In secret from audience</li>
-			<li class="next">But it will work only once</li>
-			<li class="next">Nobody wants to see the same joke twice</li>
-		</ol>
 	</div></section>
 	<section class="slide shout" id="SeeMore"><div>
 		<h2><img src="pictures/logo.svg" alt=""> <a href="https://github.com/shower/shower/">See more on GitHub</a></h2>
