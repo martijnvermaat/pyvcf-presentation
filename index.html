@@ -16,10 +16,11 @@
 		Center</p>
 	</header>
 	<section class="slide cover" id="Cover"><div>
+        <p>James Casbon, Martijn Vermaat, Aaron Quinlan, and others</p>
 		<h2>PyVCF: a flexible Python library for working with the Variant Call
 		Format (VCF)</h2>
-        <p>James Casbon, Martijn Vermaat, Aaron Quinlan, and others</p>
-		<img src="pictures/cover.jpg" alt="">
+        <p class="subtitle">Lab-J Lunch Meeting, November 20, 2013</p>
+		<img src="pictures/lunch.jpg" alt="">
 		<!--
 			To apply styles to the certain slides
 			set slide ID to get needed elements
@@ -27,20 +28,25 @@
 		<style>
 			#Cover h2 {
 				margin:30px 0 0;
-				color:#fff;
 				text-align:center;
 				font-size:70px;
+                color: #fff;
+                text-shadow:
+                  -1px -1px 0 #000,
+                  1px -1px 0 #000,
+                  -1px 1px 0 #000,
+                  1px 1px 0 #000;
 				}
 			#Cover p {
 				margin:10px 0 0;
 				text-align:center;
-				color:#fff;
 				font-style:italic;
 				font-size:20px;
+                color: #fff;
 				}
-				#Cover p a {
-					color:#FFF;
-					}
+            #Cover p.subtitle {
+                color: #000;
+            }
 		</style>
 	</div></section>
     <section class="slide"><div>
@@ -151,7 +157,7 @@
           <li>Header lines</li>
           <li>Fields have internal structure
             <ul>
-              <li>defined in the VCF specification (3.0/4.0/4.1/...)</li>
+              <li>defined in the VCF specification (3.0/4.0/4.1/4.2/...)</li>
               <li>defined in the header</li>
               <li>defined in other fields</li>
             </ul></li>
@@ -213,18 +219,16 @@
 	<section class="slide"><div>
 		<h2>Convenience properties</h2>
         <pre>
-<code>&gt;&gt;&gt; print record.num_called, record.call_rate, record.num_unknown</code>
-<code>3 1.0 0</code>
-<code>&gt;&gt;&gt; print record.num_hom_ref, record.num_het, record.num_hom_alt</code>
-<code>1 1 1</code>
+<code>&gt;&gt;&gt; print record.call_rate</code>
+<code>1.0</code>
+<code>&gt;&gt;&gt; print record.num_hom_alt</code>
+<code>1</code>
 <code>&gt;&gt;&gt; print record.nucl_diversity, record.aaf</code>
 <code>0.6 0.5</code>
 <code>&gt;&gt;&gt; print record.get_hets()</code>
 <code>[Call(sample=NA00002, CallData(GT=1|0, GQ=48, DP=8, HQ=[51, 51]))]</code>
 <code>&gt;&gt;&gt; print record.is_snp, record.is_indel, record.is_transition</code>
 <code>True False True</code>
-<code>&gt;&gt;&gt; print record.var_type, record.var_subtype</code>
-<code>snp ts</code>
         </pre>
     </div></section>
 	<section class="slide"><div>
@@ -233,8 +237,8 @@
 <code>&gt;&gt;&gt; for sample in record.samples:</code>
 <code>...     print sample['GT'], sample.gt_bases</code>
 <code>0|0 T|T</code>
-<code>0|1 A|C</code>
-<code>0/0 A/A</code>
+<code>0|1 T|A</code>
+<code>0/0 T/T</code>
 <code>&gt;&gt;&gt; call = record.genotype('NA00001')</code>
 <code>&gt;&gt;&gt; print call</code>
 <code>Call(sample=NA00001, CallData(GT=0|0, GQ=49, DP=3, HQ=[58, 50]))]</code>
@@ -343,8 +347,8 @@
         <ul>
           <li>Current version 0.6.4</li>
           <li>20 contributors</li>
-          <li>334 commits</li>
-          <li>117 issues (18 open)</li>
+          <li>345 commits</li>
+          <li>128 issues (19 open)</li>
         </ul>
         <img src="pictures/activity.png" alt="" width="800px">
     </div></section>
@@ -365,6 +369,7 @@
           <li>NumPy arrays for some data</li>
           <li>Support for genome VCF (gVCF)</li>
           <li>Inclusion in BioPython</li>
+          <li>...?</li>
         </ul>
 	</div></section>
 	<section class="slide cover" id="thanks"><div>
