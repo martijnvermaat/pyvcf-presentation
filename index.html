@@ -19,7 +19,6 @@
         <p>James Casbon, Martijn Vermaat, Aaron Quinlan, and others</p>
 		<h2>PyVCF: a flexible Python library for working with the Variant Call
 		Format (VCF)</h2>
-        <p class="subtitle">Lab-J Lunch Meeting, November 20, 2013</p>
 		<img src="pictures/lunch.jpg" alt="">
 		<!--
 			To apply styles to the certain slides
@@ -38,15 +37,13 @@
                   1px 1px 0 #000;
 				}
 			#Cover p {
+                font-weight: bold;
 				margin:10px 0 0;
 				text-align:center;
 				font-style:italic;
 				font-size:20px;
                 color: #fff;
 				}
-            #Cover p.subtitle {
-                color: #000;
-            }
 		</style>
 	</div></section>
     <section class="slide"><div>
@@ -124,6 +121,7 @@
 		</tr>
 		</table>
 	</div></section>
+<!--
 	<section class="slide"><div>
 		<h2>Python can handle this</h2>
         <pre>
@@ -135,13 +133,16 @@
         </pre>
         <p>Problem solved!</p>
     </div></section>
+//-->
 	<section class="slide cover" id="screenshot"><div>
-        <h2>Except that VCF is not <i>that</i> simple</h2>
+        <h2>but not <i>that</i> simple :(</h2>
 		<img src="pictures/screenshot.png" alt="">
 		<style>
 			#screenshot h2 {
+            font-size: 400%;
+            opacity: 0.8;
             text-align: center;
-            margin-top: 200px;
+            margin-top: 150px;
 				color:#FFF;
     text-shadow:
     -1px -1px 0 #000,
@@ -163,7 +164,7 @@
             </ul></li>
           <li>Genotypes refer to earlier fields</li>
           <li>Optional and custom fields</li>
-          <li>Structural variants</li>
+          <li>Structural variation</li>
         </ul>
     </div></section>
 	<section class="slide"><div>
@@ -192,11 +193,13 @@
         </pre>
     </div></section>
 	<section class="slide cover" id="features"><div>
-        <h2>Basic features</h2>
+        <h2>Features</h2>
 		<img src="pictures/features.jpg" alt="">
 		<style>
 			#features h2 {
             margin-top: 380px;
+            opacity: 0.9;
+            font-size: 400%;
 				color: #fff;
 				}
 		</style>
@@ -313,8 +316,11 @@
 		<img src="pictures/fast.jpg" alt="">
 		<style>
 			#fast h2 {
-            margin-left: 100px;
+            margin-top: 160px;
+            text-align: center;
 				color: #fff;
+            font-size: 500%;
+            opacity: 0.9;
 				}
 		</style>
 	</div></section>
@@ -332,13 +338,20 @@
         <img src="pictures/performance.png" alt="" width="800px">
 	</div></section>
 	<section class="slide cover" id="opensource"><div>
-        <h2>Open Source</h2>
-		<img src="pictures/opensource.jpg" alt="">
+        <h2>It's Open Source!</h2>
+		<img src="pictures/open.jpg" alt="">
 		<style>
 			#opensource h2 {
-            margin-top: -40px;
+            margin-top: 140px;
+            font-size: 500%;
+            opacity: 0.9;
             text-align:center;
 				color: #fff;
+                text-shadow:
+                  -1px -1px 0 #000,
+                  1px -1px 0 #000,
+                  -1px 1px 0 #000,
+                  1px 1px 0 #000;
 				}
 		</style>
 	</div></section>
@@ -349,6 +362,9 @@
           <li>20 contributors</li>
           <li>345 commits</li>
           <li>128 issues (19 open)</li>
+          <li>Docs
+          on <a href="http://pyvcf.readthedocs.org/en/latest/">Read the
+          Docs</a>, tests on <a href="https://travis-ci.org/jamescasbon/PyVCF">Travis CI</a></li>
         </ul>
         <img src="pictures/activity.png" alt="" width="800px">
     </div></section>
@@ -404,7 +420,7 @@
             </td>
           </tr>
         </table>
-		<img src="pictures/thanks.jpg" alt="">
+		<img src="pictures/cake.jpg" alt="">
 		<style>
             #thanks ul>li:before {
     display: none;
@@ -421,7 +437,7 @@
 		</style>
 	</div></section>
 	<section class="slide shout" id="SeeMore"><div>
-		<h2><img src="pictures/logo.svg" alt=""> <a href="https://github.com/shower/shower/">See more on GitHub</a></h2>
+		<h2><img src="pictures/octocat.jpg" alt=""> <a href="https://github.com/shower/shower/">See more on GitHub</a></h2>
 		<style>
 			#Picture h2 {
 				color:#FFF;

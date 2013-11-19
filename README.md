@@ -6,3 +6,5 @@ http://www.mcbrublog.com/tag/online-communities/
 http://www.flickr.com/photos/naok/3152626451/
 http://www.flickr.com/photos/jamesroseuk/4545278017/
 http://www.flickr.com/photos/mythoto/4856748894/
+https://secure.flickr.com/photos/50318388@N00/1914076277
+https://secure.flickr.com/photos/makenosound/3084411836/
